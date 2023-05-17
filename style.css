@@ -270,7 +270,7 @@ nav .ham-input {
   color: white;
   padding-top: 73px;
   isolation: isolate;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 .visual {
   position: absolute;
@@ -379,6 +379,9 @@ nav .ham-input {
 }
 
 @media screen and (min-width: 1024px) {
+  .expert-section {
+    overflow: visible;
+  }
   .expert-section .about-expert-section {
     flex-direction: row;
     align-items: center;
