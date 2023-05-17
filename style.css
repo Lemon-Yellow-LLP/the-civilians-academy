@@ -270,6 +270,7 @@ nav .ham-input {
   color: white;
   padding-top: 73px;
   isolation: isolate;
+  overflow-x: hidden;
 }
 .visual {
   position: absolute;
