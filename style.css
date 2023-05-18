@@ -20,11 +20,17 @@ body {
   color: var(--color-dark-light);
   background-color: #f2f1f1;
 }
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background-color: #f2f1f1;
+}
 
 nav {
   display: flex;
   padding: 0.5em 1em;
-  background-color: #ffffff;
+  background-color: transparent;
   border-bottom: 1px solid #eeeeee;
   justify-content: space-between;
 }
@@ -59,6 +65,52 @@ nav .ham {
   position: relative;
   justify-content: center;
   align-items: center;
+  background-image: url("/assets/icons/menu.svg");
+  background-repeat: no-repeat;
+  width: 38px;
+  height: 38px;
+  background-position: center;
+}
+nav .ham-links {
+  position: absolute;
+  z-index: 10;
+  top: 100%;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: #f2f1f1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/assets/images/ham-visual-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: translateX(-100%);
+  transition: transform ease-out 350ms;
+}
+.ham-links .ham-visual {
+  position: absolute;
+  top: 40%;
+  left: 0;
+}
+.ham-links .ham-visual:nth-child(2) {
+  top: 50%;
+  left: auto;
+  right: 0;
+  transform: scaleX(-1);
+}
+.ham-links a {
+  font-size: 16px;
+}
+.ham-links a.current {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+.ham-links a.primary-cta {
+  margin-top: 8px;
+  box-shadow: none;
 }
 nav .ham-input {
   position: absolute;
@@ -67,8 +119,15 @@ nav .ham-input {
   width: 100%;
   opacity: 0;
 }
+body:has(.ham-input:checked) {
+  overflow-y: hidden;
+}
 .ham:has(.ham-input:checked) {
+  background-image: url("/assets/icons/close.svg");
+}
+.ham:has(.ham-input:checked) + .ham-links {
   /* TODO: Handle on click show menu */
+  transform: translateX(0%);
 }
 
 .primary-cta {
@@ -77,8 +136,26 @@ nav .ham-input {
   font-weight: 500;
   border-radius: 8px;
   color: #ffffff;
+  box-shadow: 0px 0px 16px 0px #ca22225c;
 }
+@media screen and (min-width: 1024px) {
+  body {
+    overflow: auto !important;
+  }
+  nav .ham-links {
+    display: none;
+  }
+}
+/* Nav Section */
 
+/* Main Section */
+main {
+  display: grid;
+  grid-template-areas: "";
+}
+/* Main Section */
+
+/* Event Section */
 .event-section {
   background-image: url("/assets/images/event.png");
   background-repeat: no-repeat;
@@ -504,6 +581,273 @@ nav .ham-input {
   }
 }
 /* Vision section */
+
+/* Courses Section */
+.courses-section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+  padding-inline: 16px;
+  gap: 48px;
+}
+.courses-section .banner-image {
+  order: -1;
+}
+.courses-section .content span {
+  text-transform: uppercase;
+  color: var(--color-accent);
+  font-size: 14px;
+  font-weight: 600;
+}
+.courses-section .content h3 {
+  margin-top: 2px;
+  font-weight: 600;
+  line-height: 36px;
+  font-size: 24px;
+}
+.courses-section .pointer-container {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.courses-section .pointer {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+.courses-section .pointer div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.courses-section .pointer span {
+  text-transform: none;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-dark-light);
+}
+.courses-section .pointer p {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+}
+.courses-section .banner-logo {
+  display: none;
+  z-index: -1;
+}
+@media screen and (min-width: 1024px) {
+  .courses-section {
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 202px;
+    padding-left: 82px;
+    gap: 96px;
+    position: relative;
+  }
+  .courses-section .banner-image {
+    order: 0;
+    max-width: 560px;
+    z-index: 2;
+  }
+  .courses-section .content {
+    margin-top: 32px;
+  }
+  .courses-section .content span {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .courses-section .content h3 {
+    font-size: 40px;
+    line-height: 60px;
+  }
+  .courses-section .pointer-container {
+    margin-top: 48px;
+    gap: 48px;
+  }
+  .courses-section .pointer div {
+    gap: 8px;
+  }
+  .courses-section .pointer span {
+    font-size: 20px;
+  }
+  .courses-section .pointer p {
+    max-width: 600px;
+    font-size: 18px;
+  }
+  .courses-section .banner-logo {
+    position: absolute;
+    height: 1000px;
+    width: 680px;
+    top: 0;
+    right: 0;
+    display: inline-block;
+  }
+}
+/* Courses Section */
+
+/* Team Section */
+.team-section {
+  margin-top: 54px;
+  background-color: #0d2561;
+  padding-top: 24px;
+  padding-inline: 12px;
+  max-height: 320px;
+  margin-inline: 16px;
+  color: white;
+  border-radius: 24px;
+}
+.team-section span {
+  color: var(--color-accent-light);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  margin-inline: 12px;
+}
+.team-section h3 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
+  margin-block: 2px 8px;
+  margin-inline: 12px;
+}
+.team-section p {
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  line-height: 26px;
+  opacity: 0.8;
+  margin-inline: 12px;
+}
+.team-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  column-gap: 16px;
+  padding-bottom: 66px;
+  margin-bottom: 32px;
+}
+.team-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: #0d2561;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  max-width: 45%;
+}
+.team-card .name {
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 600;
+}
+.team-card .designation {
+  font-size: 10px;
+  font-family: "Inter", sans-serif;
+  color: #0d2561;
+  font-weight: 400;
+}
+.team-card .avatar {
+  width: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+  .team-section {
+    margin-inline: 80px;
+    margin-top: 64px;
+    z-index: 10;
+    padding-top: 40px;
+    padding-inline: 28px;
+  }
+  .team-section span {
+    font-size: 24px;
+  }
+  .team-section h3 {
+    font-size: 40px;
+    line-height: 60px;
+  }
+  .team-section p {
+    font-size: 18px;
+    line-height: 32px;
+  }
+  .team-container {
+    justify-content: flex-end;
+    padding-inline: 38px;
+    gap: 24px;
+    padding-bottom: 54px;
+    margin-bottom: 40px;
+  }
+  .team-card .name {
+    font-size: 24px;
+    line-height: 36px;
+  }
+  .team-card .designation {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+/* Team Section */
+
+/* Faculty Section */
+.faculty-section {
+  position: relative;
+  padding-top: 40px;
+  padding-bottom: 48px;
+  margin-top: 510px;
+  text-align: center;
+}
+.faculty-section span {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-accent-light);
+  line-height: 22px;
+  margin-bottom: 2px;
+}
+.faculty-section h3 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
+}
+.faculty-section .card {
+  background-color: red;
+  position: relative;
+  /* max-width: 220px; */
+  /* width: 220px !important; */
+  margin-inline: 8px;
+}
+
+.faculty-section .card img {
+  width: 100%;
+  height: 100%;
+}
+.faculty-section .card .content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  bottom: 16px;
+  left: 16px;
+  z-index: 2;
+  text-align: left;
+  line-height: 21px;
+}
+.faculty-section .card .name {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+  color: white;
+}
+.faculty-section .card .designation {
+  font-size: 10px;
+  font-weight: 400;
+  color: white;
+}
+.faculty-section .cards-container {
+  margin-top: 48px;
+  /* padding-inline: 8px; */
+}
+
+/* Faculty Section */
 
 @media screen and (min-width: 1024px) {
   nav {
